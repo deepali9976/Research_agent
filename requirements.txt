@@ -1,0 +1,15 @@
+beautifulsoup4==4.14.2
+langchain==1.0.5
+langchain_community==0.4.1
+langchain_core==1.0.4
+langchain_groq==1.0.0
+langchain_tavily==0.2.13
+markdown2==2.5.4
+matplotlib==3.10.7
+#memory_manager==0.31
+pandas==2.3.3
+Pillow==12.0.0
+python-dotenv==1.2.1
+Requests==2.32.5
+streamlit==1.51.0
+tqdm==4.67.1

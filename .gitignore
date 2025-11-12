@@ -1,0 +1,16 @@
+.env
+venv/
+
+__pycache__/
+*.pyc
+
+.dockerignore
+Dockerfile
+desktop.ini
+*.pyo
+main.py
+backend/data
+backend/__pycache__/
+backend/venv/
+backend/results
+backend/memory
