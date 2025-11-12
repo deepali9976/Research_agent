@@ -8,10 +8,13 @@ import re
 import base64
 import io
 import sys
+import traceback
+from threading import Thread
+import queue
 
 st.set_page_config(page_title="AI Research Agent", layout="wide", page_icon="🧠")
 
-# ===== INITIALIZE SESSION STATE FIRST (BEFORE ANY st.session_state ACCESS) =====
+# ===== INITIALIZE SESSION STATE FIRST =====
 if 'running' not in st.session_state:
     st.session_state.running = False
 if 'completed' not in st.session_state:
@@ -20,8 +23,9 @@ if 'result' not in st.session_state:
     st.session_state.result = None
 if 'logs' not in st.session_state:
     st.session_state.logs = ""
+if 'error' not in st.session_state:
+    st.session_state.error = None
     
-# Add this helper function at the top (after imports)
 def cleanup_results():
     """Clean up results from previous runs"""
     results_dir = Path("backend/results")
@@ -42,148 +46,17 @@ def cleanup_results():
     
     return cleaned_count
 
-# Custom CSS
-st.markdown("""
-<style>
-    .main-header {
-        font-size: 3rem;
-        font-weight: bold;
-        text-align: center;
-        margin-bottom: 1rem;
-    }
-    .stButton>button {
-        width: 100%;
-        height: 3rem;
-        font-size: 1.2rem;
-        font-weight: bold;
-    }
-    /* Fix for HTML iframe content */
-    iframe {
-        background-color: white !important;
-    }
-</style>
-""", unsafe_allow_html=True)
-
-st.markdown('<div class="main-header">🧠 Autonomous Research System</div>', unsafe_allow_html=True)
-
-st.markdown("""
-<p style='text-align: center; font-size: 1.1rem; color: #666;'>
-Multi-agent AI system that discovers domains, finds data, designs experiments, and writes research papers
-</p>
-""", unsafe_allow_html=True)
-
-# Sidebar controls
-with st.sidebar:
-    st.header("⚙️ Configuration")
-    iterations = st.number_input("Research Iterations", min_value=1, max_value=10, value=1)
-    show_logs = st.checkbox("Show Execution Logs", value=False)
-    
-    st.markdown("---")
-    
-    if st.button("🗑️ Clear Previous Results", use_container_width=True):
-        count = cleanup_results()
-        st.success(f"✅ Cleaned {count} files!")
-        time.sleep(1)
-        st.rerun()
-
-# Main content
-col1, col2, col3 = st.columns([1, 2, 1])
-with col2:
-    start_button = st.button("🚀 Start Research", use_container_width=True, type="primary")
-
-# Main execution
-if start_button:
-    st.session_state.running = True
-    st.session_state.completed = False
-
-if st.session_state.running:
-    # Progress tracking
-    progress_bar = st.progress(0)
-    status_text = st.empty()
-    
-    # Auto-cleanup before starting
-    status_text.text("🧹 Preparing workspace...")
-    cleanup_results()
-    
-    # Log container
-    if show_logs:
-        log_expander = st.expander("📜 Execution Logs", expanded=False)
-        log_placeholder = log_expander.empty()
-    
-    # Initialize log capture BEFORE try block
-    log_stream = io.StringIO()
-    old_stdout = sys.stdout
-    
-    try:
-        # Initialize orchestrator
-        status_text.text("🚀 Initializing agents...")
-        progress_bar.progress(10)
-        orchestrator = Orchestrator()
-        
-        # Capture logs
-        sys.stdout = log_stream
-        
-        # Update progress as pipeline runs
-        status_text.text("🌐 Discovering research domain...")
-        progress_bar.progress(20)
-        time.sleep(0.5)
-        
-        status_text.text("💭 Generating research questions...")
-        progress_bar.progress(35)
-        
-        status_text.text("📊 Finding relevant datasets...")
-        progress_bar.progress(50)
-        
-        status_text.text("⚗️ Designing experiments...")
-        progress_bar.progress(65)
-        
-        status_text.text("🧠 Running critical review...")
-        progress_bar.progress(80)
-        
-        status_text.text("📄 Writing research paper...")
-        progress_bar.progress(90)
-        
-        # Run the actual research cycle
-        result = orchestrator.run_cycle(iterations=iterations)
-        
-        # Restore stdout
-        sys.stdout = old_stdout
-        logs = log_stream.getvalue()
-        
-        # Update UI
-        progress_bar.progress(100)
-        status_text.text("✅ Research completed!")
-        
-        # Show logs if enabled
-        if show_logs:
-            log_placeholder.text_area("Logs", logs, height=300)
-        
-        st.session_state.running = False
-        st.session_state.completed = True
-        st.session_state.result = result
-        st.session_state.logs = logs
-        
-    except Exception as e:
-        sys.stdout = old_stdout
-        st.error("❌ An error occurred during research")
-        st.code(f"Error: {str(e)}")
-        st.session_state.running = False
-
-# Helper function to convert image to base64
 def get_image_base64(image_path):
+    """Convert image to base64"""
     try:
         with open(image_path, "rb") as img_file:
             return base64.b64encode(img_file.read()).decode()
     except:
         return None
 
-# Helper function to fix HTML content
 def fix_html_styling(html_content):
-    """Add proper styling to HTML content for light background"""
-    
-    # Check if HTML already has styling
+    """Add proper styling to HTML content"""
     if '<style>' not in html_content and '<head>' in html_content:
-        # Insert style in head
         style_tag = """
         <style>
             body {
@@ -210,7 +83,6 @@ def fix_html_styling(html_content):
         """
         html_content = html_content.replace('</head>', f'{style_tag}</head>')
     elif '<style>' not in html_content:
-        # Add full HTML structure
         html_content = f"""
         <!DOCTYPE html>
         <html>
@@ -256,12 +128,223 @@ def fix_html_styling(html_content):
         </body>
         </html>
         """
-    
     return html_content
 
+# Custom CSS
+st.markdown("""
+<style>
+    .main-header {
+        font-size: 3rem;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+    .stButton>button {
+        width: 100%;
+        height: 3rem;
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+    iframe {
+        background-color: white !important;
+    }
+    .log-box {
+        background-color: #0e1117;
+        color: #fafafa;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        font-family: monospace;
+        font-size: 0.9rem;
+        max-height: 400px;
+        overflow-y: auto;
+    }
+</style>
+""", unsafe_allow_html=True)
+
+st.markdown('<div class="main-header">🧠 Autonomous Research System</div>', unsafe_allow_html=True)
+
+st.markdown("""
+<p style='text-align: center; font-size: 1.1rem; color: #666;'>
+Multi-agent AI system that discovers domains, finds data, designs experiments, and writes research papers
+</p>
+""", unsafe_allow_html=True)
+
+# Sidebar controls
+with st.sidebar:
+    st.header("⚙️ Configuration")
+    iterations = st.number_input("Research Iterations", min_value=1, max_value=10, value=1)
+    show_logs = st.checkbox("Show Real-time Logs", value=True)
+    timeout_minutes = st.number_input("Timeout (minutes)", min_value=1, max_value=60, value=15)
+    
+    st.markdown("---")
+    
+    if st.button("🗑️ Clear Previous Results", use_container_width=True):
+        count = cleanup_results()
+        st.success(f"✅ Cleaned {count} files!")
+        time.sleep(1)
+        st.rerun()
+    
+    st.markdown("---")
+    st.info("💡 **Tip**: Enable real-time logs to monitor agent activity")
+
+# Main content
+col1, col2, col3 = st.columns([1, 2, 1])
+with col2:
+    start_button = st.button("🚀 Start Research", use_container_width=True, type="primary")
+    
+    if st.session_state.running:
+        if st.button("⏹️ Stop Research", use_container_width=True, type="secondary"):
+            st.session_state.running = False
+            st.warning("⚠️ Research stopped by user")
+            st.rerun()
+
+# Main execution
+if start_button:
+    st.session_state.running = True
+    st.session_state.completed = False
+    st.session_state.error = None
+
+if st.session_state.running:
+    # Progress tracking
+    progress_bar = st.progress(0)
+    status_text = st.empty()
+    
+    # Auto-cleanup before starting
+    status_text.text("🧹 Preparing workspace...")
+    cleanup_results()
+    
+    # Real-time log display
+    if show_logs:
+        st.markdown("### 📜 Live Execution Logs")
+        log_container = st.container()
+        log_display = log_container.empty()
+    
+    # Initialize log capture BEFORE try block
+    log_stream = io.StringIO()
+    old_stdout = sys.stdout
+    
+    # Track start time for timeout
+    start_time = time.time()
+    timeout_seconds = timeout_minutes * 60
+    
+    try:
+        # Initialize orchestrator
+        status_text.text("🚀 Initializing agents...")
+        progress_bar.progress(5)
+        orchestrator = Orchestrator()
+        
+        # Redirect stdout to capture logs
+        sys.stdout = log_stream
+        
+        # Create a wrapper to run with timeout monitoring
+        def run_research():
+            return orchestrator.run_cycle(iterations=iterations)
+        
+        # Progress stages
+        stages = [
+            (10, "🌐 Discovering research domain..."),
+            (25, "💭 Generating research questions..."),
+            (40, "📊 Finding relevant datasets..."),
+            (55, "⚗️ Designing experiments..."),
+            (70, "🧪 Running experiments..."),
+            (85, "🧠 Running critical review..."),
+            (95, "📄 Writing research paper...")
+        ]
+        
+        stage_idx = 0
+        result = None
+        
+        # Start the research in a separate thread to allow monitoring
+        result_queue = queue.Queue()
+        error_queue = queue.Queue()
+        
+        def research_worker():
+            try:
+                res = run_research()
+                result_queue.put(res)
+            except Exception as e:
+                error_queue.put(e)
+        
+        worker_thread = Thread(target=research_worker, daemon=True)
+        worker_thread.start()
+        
+        # Monitor progress with timeout
+        while worker_thread.is_alive():
+            # Check timeout
+            elapsed = time.time() - start_time
+            if elapsed > timeout_seconds:
+                sys.stdout = old_stdout
+                st.error(f"⏱️ Research timed out after {timeout_minutes} minutes")
+                st.warning("The agents may be stuck in a loop. Try reducing iterations or check your agent code.")
+                st.session_state.running = False
+                st.stop()
+            
+            # Update progress
+            if stage_idx < len(stages):
+                progress, message = stages[stage_idx]
+                progress_bar.progress(progress)
+                status_text.text(f"{message} ({int(elapsed/60)}m {int(elapsed%60)}s elapsed)")
+                stage_idx = (stage_idx + 1) % len(stages)
+            
+            # Show logs
+            if show_logs:
+                current_logs = log_stream.getvalue()
+                if current_logs:
+                    # Show last 30 lines
+                    lines = current_logs.split('\n')[-30:]
+                    log_display.markdown(f'<div class="log-box">{"<br>".join(lines)}</div>', unsafe_allow_html=True)
+            
+            time.sleep(2)
+        
+        # Get result or error
+        if not error_queue.empty():
+            raise error_queue.get()
+        
+        if not result_queue.empty():
+            result = result_queue.get()
+        
+        # Restore stdout
+        sys.stdout = old_stdout
+        logs = log_stream.getvalue()
+        
+        # Update UI
+        progress_bar.progress(100)
+        status_text.text("✅ Research completed!")
+        
+        st.session_state.running = False
+        st.session_state.completed = True
+        st.session_state.result = result
+        st.session_state.logs = logs
+        
+        # Auto-refresh to show results
+        time.sleep(1)
+        st.rerun()
+        
+    except Exception as e:
+        # Restore stdout safely
+        sys.stdout = old_stdout
+        st.error("❌ An error occurred during research")
+        st.code(f"Error: {str(e)}")
+        
+        with st.expander("📋 Full Traceback"):
+            st.code(traceback.format_exc())
+        
+        with st.expander("📜 Execution Logs"):
+            st.code(log_stream.getvalue())
+        
+        st.session_state.running = False
+        st.session_state.error = str(e)
+
 # Display results if completed
-if st.session_state.completed:
+if st.session_state.completed and not st.session_state.running:
     st.success("🎉 Research pipeline completed successfully!")
+    
+    # Show execution summary
+    if st.session_state.logs:
+        with st.expander("📊 Execution Summary"):
+            log_lines = st.session_state.logs.split('\n')
+            st.metric("Total Log Lines", len(log_lines))
+            st.text_area("Full Logs", st.session_state.logs, height=200)
     
     # Tabs for different views
     tab1, tab2, tab3 = st.tabs(["📄 Research Paper", "🖼️ Visualizations", "💾 Downloads"])
@@ -311,9 +394,39 @@ if st.session_state.completed:
             with open(paper_md, 'r', encoding='utf-8') as f:
                 paper_content = f.read()
             
-            # Extract image references
-            image_pattern = r'!\[([^\]]*)\]\(([^)]+)\)'
-            image_refs = re.findall(image_pattern, paper_content)
+            # Add custom CSS for better markdown rendering
+            st.markdown("""
+            <style>
+                div[data-testid="stMarkdownContainer"] h1 { 
+                    margin-top: 2rem !important; 
+                    margin-bottom: 1rem !important; 
+                }
+                div[data-testid="stMarkdownContainer"] h2 { 
+                    margin-top: 1.5rem !important; 
+                    margin-bottom: 0.75rem !important; 
+                }
+                div[data-testid="stMarkdownContainer"] h3 { 
+                    margin-top: 1.25rem !important; 
+                    margin-bottom: 0.5rem !important; 
+                }
+                div[data-testid="stMarkdownContainer"] h4 {
+                    margin-top: 1rem !important;
+                    margin-bottom: 0.5rem !important;
+                }
+                div[data-testid="stMarkdownContainer"] p {
+                    margin-bottom: 1rem !important;
+                    line-height: 1.6 !important;
+                }
+                div[data-testid="stMarkdownContainer"] ul, 
+                div[data-testid="stMarkdownContainer"] ol {
+                    margin-bottom: 1rem !important;
+                    margin-top: 0.5rem !important;
+                }
+                div[data-testid="stMarkdownContainer"] li {
+                    margin-bottom: 0.25rem !important;
+                }
+            </style>
+            """, unsafe_allow_html=True)
             
             # Split content by images and display
             parts = re.split(r'(!\[.*?\]\(.*?\))', paper_content)
@@ -328,9 +441,9 @@ if st.session_state.completed:
                         # Find the actual image file
                         exp_dir = Path("backend/results/experiments")
                         possible_paths = [
-                            Path(img_path),  # Exact path
-                            exp_dir / Path(img_path).name,  # Just filename in experiments
-                            Path("backend/results/final_paper") / img_path,  # Relative to paper
+                            Path(img_path),
+                            exp_dir / Path(img_path).name,
+                            Path("backend/results/final_paper") / img_path,
                         ]
                         
                         for full_path in possible_paths:
@@ -340,16 +453,15 @@ if st.session_state.completed:
                         else:
                             st.warning(f"⚠️ Image not found: {img_path}")
                 else:
-                    # Regular markdown content
                     if part.strip():
-                        st.markdown(part, unsafe_allow_html=True)
+                        st.markdown(part)
         else:
             st.warning("⚠️ Paper not found. Check if generation completed successfully.")
+            st.info("💡 The research may have completed but failed to generate the final paper. Check the logs above.")
     
     with tab2:
         st.header("🖼️ All Visualizations")
         
-        # Display all generated visualizations
         exp_dir = Path("backend/results/experiments")
         if exp_dir.exists():
             image_files = sorted(list(exp_dir.glob("*.png")) + list(exp_dir.glob("*.jpg")))
@@ -357,22 +469,18 @@ if st.session_state.completed:
             if image_files:
                 st.write(f"Found {len(image_files)} visualizations")
                 
-                # Add filter option
                 show_all = st.checkbox("Show all images", value=False)
                 
                 if not show_all:
-                    # Only show images referenced in the paper
                     paper_md = Path("backend/results/final_paper/mini_research_paper.md")
                     if paper_md.exists():
                         with open(paper_md, 'r', encoding='utf-8') as f:
                             paper_content = f.read()
                         
-                        # Extract referenced image filenames
                         image_pattern = r'!\[.*?\]\(([^)]+)\)'
                         referenced = re.findall(image_pattern, paper_content)
                         referenced_names = {Path(p).name for p in referenced}
                         
-                        # Filter images
                         image_files = [img for img in image_files if img.name in referenced_names]
                         st.info(f"Showing {len(image_files)} images referenced in the paper")
                 
@@ -381,7 +489,6 @@ if st.session_state.completed:
                     with cols[idx % 3]:
                         st.image(str(img_path), caption=img_path.name, use_container_width=True)
                         
-                        # Add download button for each image
                         with open(img_path, "rb") as file:
                             st.download_button(
                                 label="⬇️ Download",
@@ -401,7 +508,6 @@ if st.session_state.completed:
         col1, col2 = st.columns(2)
         
         with col1:
-            # Download paper (Markdown)
             paper_md = Path("backend/results/final_paper/mini_research_paper.md")
             if paper_md.exists():
                 with open(paper_md, 'rb') as f:
@@ -414,7 +520,6 @@ if st.session_state.completed:
                     )
         
         with col2:
-            # Download paper (HTML)
             paper_html = Path("backend/results/final_paper/mini_research_paper.html")
             if paper_html.exists():
                 with open(paper_html, 'rb') as f:
@@ -426,7 +531,6 @@ if st.session_state.completed:
                         use_container_width=True
                     )
         
-        # Download all visualizations as zip
         st.markdown("---")
         if st.button("📦 Package All Results as ZIP", use_container_width=True):
             import zipfile
@@ -434,12 +538,10 @@ if st.session_state.completed:
             zip_buffer = io.BytesIO()
             
             with zipfile.ZipFile(zip_buffer, 'w', zipfile.ZIP_DEFLATED) as zip_file:
-                # Add paper files
                 for paper_file in [paper_md, paper_html]:
                     if paper_file and paper_file.exists():
                         zip_file.write(paper_file, f"paper/{paper_file.name}")
                 
-                # Add all images
                 exp_dir = Path("backend/results/experiments")
                 if exp_dir.exists():
                     for img_file in exp_dir.glob("*.png"):

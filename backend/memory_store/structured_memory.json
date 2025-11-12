@@ -1,147 +1,168 @@
 {
   "questions": [
     {
-      "question": "Can engineered living therapeutics be designed to selectively target and eradicate cancer stem cells while sparing healthy stem cells, thereby preventing cancer recurrence and improving patient outcomes?",
-      "reasoning": "Cancer stem cells are a major contributor to cancer recurrence and metastasis. Developing engineered living therapeutics that can selectively target and eradicate these cells would be a significant breakthrough in cancer treatment. This would require a deep understanding of the molecular mechanisms governing cancer stem cell biology and the development of novel biomaterials and cellular engineering strategies.",
-      "potential_impact": "Improved patient outcomes, reduced cancer recurrence rates, and enhanced quality of life for cancer patients."
+      "question": "How do nanomechanical reinforcements in structural battery composite materials influence the self-healing capability of the lithium-ion electrolyte, and can this be engineered to prevent crack propagation and enhance long-term cyclic stability?",
+      "reasoning": "Understanding the interplay between nanomechanical reinforcements and self-healing mechanisms in structural battery composites is crucial for developing durable and efficient energy storage systems. Self-healing capabilities can mitigate degradation and extend the lifespan of these materials.",
+      "potential_impact": "Answering this question could enable the creation of self-healing structural battery composites with significant improvements in energy storage capacity, lifespan, and overall system efficiency, paving the way for widespread adoption in electric vehicles and renewable energy infrastructure."
     },
     {
-      "question": "How can we engineer living cells to produce novel, targeted immunomodulatory molecules that can selectively suppress or activate the immune system in specific disease contexts, such as autoimmune disorders or allergies?",
-      "reasoning": "Engineered living therapeutics have the potential to revolutionize the treatment of autoimmune disorders and allergies by providing a targeted and controlled approach to modulating the immune system. Developing novel immunomodulatory molecules that can selectively suppress or activate the immune system would require a deep understanding of immune cell biology and the development of novel biomaterials and cellular engineering strategies.",
-      "potential_impact": "Improved treatment options for autoimmune disorders and allergies, reduced side effects, and enhanced patient quality of life."
+      "question": "Can the incorporation of piezoelectric materials into structural battery composite structures enable the harvesting of mechanical energy from environmental sources, such as vibrations and wind, and how can this be optimized for maximum energy conversion efficiency?",
+      "reasoning": "Integrating piezoelectric materials into structural battery composites offers a promising approach to scavenging renewable energy from the environment, which could supplement or even replace traditional energy storage systems. Optimizing energy conversion efficiency is critical for widespread adoption.",
+      "potential_impact": "Solving this question could unlock the potential for widespread energy harvesting from environmental sources, reducing reliance on traditional energy storage systems and enabling the creation of more sustainable, self-sufficient infrastructure in various industries, including aerospace, automotive, and renewable energy."
     },
     {
-      "question": "Can we engineer living cells to produce novel biomaterials that can be used to repair or replace damaged tissues, such as heart tissue or cartilage, and thereby restore function and improve patient outcomes?",
-      "reasoning": "Damage to tissues due to injury or disease can lead to significant morbidity and mortality. Developing engineered living therapeutics that can produce novel biomaterials to repair or replace damaged tissues would be a significant breakthrough in regenerative medicine. This would require a deep understanding of tissue engineering and the development of novel biomaterials and cellular engineering strategies.",
-      "potential_impact": "Improved patient outcomes, restored function, and enhanced quality of life for patients with damaged tissues."
+      "question": "What are the effects of 3D printing and additive manufacturing on the microstructure and mechanical properties of structural battery composite materials, and how can this be leveraged to create customized, optimized structures for specific applications?",
+      "reasoning": "Understanding the impact of 3D printing on structural battery composites is essential for developing customized materials with tailored properties for specific applications. By optimizing microstructure and mechanical properties, we can create more efficient, durable, and cost-effective energy storage systems.",
+      "potential_impact": "Answering this question could enable the creation of customized structural battery composite materials with optimized properties for specific applications, leading to improved energy storage capacity, reduced weight, and increased lifespan, which could have significant impacts on industries such as aerospace, automotive, and renewable energy."
     },
     {
-      "question": "How can we engineer living cells to produce novel antimicrobial peptides or proteins that can selectively target and kill antibiotic-resistant bacteria, thereby restoring the effectiveness of antibiotics and preventing the spread of antibiotic-resistant infections?",
-      "reasoning": "The rise of antibiotic-resistant bacteria poses a significant threat to global health. Developing engineered living therapeutics that can produce novel antimicrobial peptides or proteins would be a crucial step in addressing this challenge. This would require a deep understanding of bacterial biology and the development of novel biomaterials and cellular engineering strategies.",
-      "potential_impact": "Restored effectiveness of antibiotics, prevention of antibiotic-resistant infections, and improved treatment options for patients with antibiotic-resistant infections."
+      "question": "Can the integration of metamaterials and structural battery composite structures enable the creation of adaptive, shape-shifting energy storage systems that can respond to changing environmental conditions and optimize energy harvesting and storage?",
+      "reasoning": "Developing adaptive energy storage systems that can respond to changing environmental conditions is crucial for maximizing energy efficiency and minimizing waste. Metamaterials and structural battery composite structures offer a promising approach to creating such systems.",
+      "potential_impact": "Solving this question could lead to the development of adaptive energy storage systems that can optimize energy harvesting and storage in response to changing environmental conditions, reducing energy waste and enabling the creation of more sustainable, efficient infrastructure in various industries, including renewable energy, aerospace, and automotive."
     },
     {
-      "question": "Can we engineer living cells to produce novel molecules that can selectively target and remove toxic heavy metals from the body, thereby preventing heavy metal-induced toxicity and improving patient outcomes?",
-      "reasoning": "Exposure to toxic heavy metals can lead to significant morbidity and mortality. Developing engineered living therapeutics that can produce novel molecules to selectively target and remove toxic heavy metals would be a significant breakthrough in environmental health. This would require a deep understanding of heavy metal biology and the development of novel biomaterials and cellular engineering strategies.",
-      "potential_impact": "Improved patient outcomes, reduced heavy metal-induced toxicity, and enhanced environmental health."
+      "question": "What are the effects of high-temperature and high-stress conditions on the degradation mechanisms and long-term stability of structural battery composite materials, and how can this be mitigated through the development of new materials and design approaches?",
+      "reasoning": "Understanding the impact of high-temperature and high-stress conditions on structural battery composites is essential for developing reliable, durable energy storage systems for harsh environments. By mitigating degradation mechanisms, we can create more efficient, long-lasting energy storage systems.",
+      "potential_impact": "Answering this question could enable the development of structural battery composite materials and design approaches that can withstand high-temperature and high-stress conditions, reducing the risk of degradation and enabling the creation of more reliable, efficient energy storage systems for applications in extreme environments, such as aerospace, automotive, and renewable energy."
     }
   ],
   "data": {
     "agent_name": "DataFinderAgent",
     "status": "no_data_found",
-    "domain": "Engineered Living Therapeutics",
+    "domain": "Structural Battery Composites",
     "datasets_found": 0,
     "datasets": [],
-    "summary": "Found 0 valid datasets for 'Engineered Living Therapeutics'",
+    "summary": "Found 0 valid datasets for 'Structural Battery Composites'",
     "metadata": []
   },
   "domain": {
-    "error": "JSON parsing failed",
-    "raw_output": "Based on the provided search results, I will analyze the fields, identify emerging domains, and select the most promising one.\n\n**Step 1: Analyze all fields**\n\nThe search results provide information on various emerging domains across scientific, technological, social, environmental, and interdisciplinary fields. Some of the key trends and technologies mentioned include:\n\n* Artificial Intelligence (AI) for scientific discovery\n* Privacy-enhancing technologies\n* Reconfigurable intelligent surfaces\n* Structural battery composites\n* Osmotic power systems\n* Advanced nuclear technologies\n* Engineered living therapeutics\n* GLP-1s for neurodegenerative disease\n* Autonomous biochemical sensing\n* Green nitrogen fixation\n* Nanozymes\n* Collaborative sensing\n* Generative watermarking\n\n**Step 2: Identif"
+    "domain_name": "Structural Battery Composites",
+    "description": "A new class of materials that combine the benefits of batteries and structural components, enabling more efficient energy storage and harvesting in various applications.",
+    "sources": [
+      "https://reports.weforum.org/docs/WEF_Top_10_Emerging_Technologies_of_2025.pdf",
+      "https://www.iea.org/reports/ammonia-technology-roadmap/executive-summary"
+    ],
+    "confidence_score": 0.9966234
   },
   "experiment": {
     "dataset_analysis": [],
     "experiment_proposal": {
       "hypotheses": [
         {
-          "id": 1,
-          "description": "Engineered living therapeutics can effectively target cancer cells without harming healthy cells.",
-          "predicted_outcome": "70% reduction in cancer cell growth"
+          "id": "H1",
+          "description": "Structural Battery Composites with higher carbon fiber content will exhibit improved mechanical strength.",
+          "predicted_outcome": "Increased mechanical strength"
         },
         {
-          "id": 2,
-          "description": "The combination of engineered living therapeutics and chemotherapy can lead to improved treatment outcomes in cancer patients.",
-          "predicted_outcome": "25% increase in patient survival rates"
+          "id": "H2",
+          "description": "The addition of conductive nanoparticles will enhance the electrical conductivity of Structural Battery Composites.",
+          "predicted_outcome": "Increased electrical conductivity"
         },
         {
-          "id": 3,
-          "description": "Engineered living therapeutics can be used to repair damaged heart tissue after a heart attack.",
-          "predicted_outcome": "50% improvement in heart function"
+          "id": "H3",
+          "description": "Structural Battery Composites with optimized electrolyte composition will show improved energy storage capacity.",
+          "predicted_outcome": "Increased energy storage capacity"
         }
       ],
       "experiment_design": {
         "methods": [
-          "CRISPR gene editing",
-          "RNA interference",
-          "Cell culture and differentiation"
+          "Compression testing",
+          "Tensile testing",
+          "Electrical conductivity measurement",
+          "Energy storage capacity testing"
         ],
         "metrics": [
-          "Cell viability",
-          "Cell proliferation",
-          "Gene expression"
+          "Mechanical strength",
+          "Electrical conductivity",
+          "Energy storage capacity",
+          "Cycle life"
         ],
         "tools": [
-          "Flow cytometry",
-          "PCR",
-          "Microscopy"
+          "Universal testing machine",
+          "Electrical conductivity meter",
+          "Battery tester",
+          "Data acquisition software"
         ]
       },
       "expected_outcome": {
-        "success_criteria": "Statistically significant improvement in treatment outcomes"
+        "success_criteria": [
+          "Mechanical strength > 10% increase",
+          "Electrical conductivity > 20% increase",
+          "Energy storage capacity > 15% increase"
+        ]
       },
       "visualization_to_generate": {
         "type": "bar_chart",
         "data": {
           "labels": [
-            "Control",
-            "Treatment Group"
+            "H1",
+            "H2",
+            "H3"
           ],
           "values": {
-            "Cell Viability": [
-              80,
-              95
+            "Mechanical strength": [
+              5,
+              10,
+              12
             ],
-            "Cell Proliferation": [
-              20,
-              40
+            "Electrical conductivity": [
+              15,
+              25,
+              30
+            ],
+            "Energy storage capacity": [
+              8,
+              12,
+              18
             ]
           }
         },
-        "description": "Comparison of cell viability and proliferation in control and treatment groups"
+        "description": "Comparison of Mechanical strength, Electrical conductivity, and Energy storage capacity among different hypotheses"
       }
     },
-    "visualization_path": "backend/results/experiments\\visualization_2312.png"
+    "visualization_path": "backend/results/experiments\\visualization_2454.png"
   },
   "critique": {
     "strengths": [
-      "Clearly defined research domain and description.",
-      "The proposed experiment design is well-structured and uses relevant methods and tools.",
-      "The expected outcome is well-defined with specific success criteria.",
-      "The visualization plan is clear and descriptive.",
-      "The confidence score in the research domain is high (0.99687636).",
-      "Multiple hypotheses are proposed, increasing the potential for insightful results."
+      "Clear domain description and relevant sources",
+      "Well-defined hypotheses with predicted outcomes",
+      "Comprehensive experiment design with various testing methods",
+      "Expected outcome criteria are specific and measurable",
+      "Visualization plan is well-structured and relevant",
+      "Use of confidence score for domain validation"
     ],
     "weaknesses": [
-      "The dataset analysis is empty, which may indicate a lack of existing data or a failure to properly collect and analyze it.",
-      "The hypotheses lack clear and specific metrics for evaluation.",
-      "The predicted outcomes are based on a single numerical value, which may oversimplify the complexity of the system.",
-      "The visualization plan only considers two groups (control and treatment), which may not reflect the full complexity of the experiment.",
-      "The experiment design could benefit from more detailed descriptions of the cell culture and differentiation methods.",
-      "The list of sources for the research domain is limited to two websites."
+      "No dataset analysis provided for context",
+      "Lack of information on sample size and population",
+      "Experiment design relies on multiple testing methods",
+      "Success criteria for cycle life are not defined",
+      "No discussion of potential confounding variables",
+      "Visualization data seems to be hypothetical without actual results"
     ],
     "risks": [
-      "The use of CRISPR gene editing and RNA interference may have unintended consequences, such as off-target effects.",
-      "The combination of engineered living therapeutics and chemotherapy may interact in unpredictable ways, leading to adverse effects.",
-      "The repair of damaged heart tissue after a heart attack may require more complex and nuanced therapies than engineered living therapeutics.",
-      "The experiment design may not account for potential confounding variables, such as differences in patient demographics or treatment protocols.",
-      "The predicted outcomes may not be realistic or achievable with current technology.",
-      "The experiment may be subject to regulatory and ethical constraints that could impact its feasibility."
+      "Hypotheses may be too specific or narrow",
+      "Experiment design may not account for variability in materials",
+      "Conductive nanoparticles may have unintended effects on mechanical strength",
+      "Optimized electrolyte composition may not always lead to improved energy storage",
+      "Cycle life testing may not be feasible with current tools",
+      "Confidence score may be affected by sources used"
     ],
     "recommended_fixes": [
-      "Conduct a thorough literature review to identify existing datasets and studies that could inform the experiment.",
-      "Refine the hypotheses to include specific and measurable metrics for evaluation.",
-      "Consider using more nuanced and detailed descriptions of the cell culture and differentiation methods.",
-      "Include more groups in the visualization plan to reflect the full complexity of the experiment.",
-      "Consult with experts in the field to ensure that the experiment design is feasible and compliant with regulatory and ethical guidelines."
+      "Conduct a thorough dataset analysis and provide context",
+      "Specify sample size and population for the experiment",
+      "Consider using a single testing method for each hypothesis",
+      "Define success criteria for cycle life",
+      "Discuss potential confounding variables and their impact",
+      "Validate the experiment design with additional experts"
     ],
-    "critique_score": 0.7,
+    "critique_score": 0.6,
     "iterate": true,
     "suggested_next_steps": [
-      "Refine the experiment design and hypotheses in consultation with experts in the field.",
-      "Conduct a thorough literature review to identify existing datasets and studies that could inform the experiment.",
-      "Consult with regulatory and ethics experts to ensure compliance with guidelines and regulations."
+      "Refine hypotheses based on dataset analysis and expert feedback",
+      "Develop a more comprehensive experiment design with single testing methods",
+      "Conduct literature review on conductive nanoparticles and electrolyte composition"
     ],
-    "notes": "The critique highlights several strengths and weaknesses in the experiment proposal, as well as potential risks and recommended fixes. The suggested next steps aim to address these issues and improve the overall quality of the experiment proposal."
+    "notes": "The experiment proposal shows promise, but requires refinement and validation before proceeding."
   },
   "paper": {
     "agent_name": "PaperGeneratorAgent",
