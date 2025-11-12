@@ -6,8 +6,41 @@ from pathlib import Path
 import time
 import re
 import base64
+import io
+import sys
 
 st.set_page_config(page_title="AI Research Agent", layout="wide", page_icon="🧠")
+
+# ===== INITIALIZE SESSION STATE FIRST (BEFORE ANY st.session_state ACCESS) =====
+if 'running' not in st.session_state:
+    st.session_state.running = False
+if 'completed' not in st.session_state:
+    st.session_state.completed = False
+if 'result' not in st.session_state:
+    st.session_state.result = None
+if 'logs' not in st.session_state:
+    st.session_state.logs = ""
+    
+# Add this helper function at the top (after imports)
+def cleanup_results():
+    """Clean up results from previous runs"""
+    results_dir = Path("backend/results")
+    cleaned_count = 0
+    
+    for folder in ["experiments", "final_paper"]:
+        folder_path = results_dir / folder
+        if folder_path.exists():
+            for file in folder_path.glob("*"):
+                if file.is_file():
+                    try:
+                        file.unlink()
+                        cleaned_count += 1
+                    except Exception as e:
+                        print(f"Could not delete {file}: {e}")
+        else:
+            folder_path.mkdir(parents=True, exist_ok=True)
+    
+    return cleaned_count
 
 # Custom CSS
 st.markdown("""
@@ -31,7 +64,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-st.markdown('<div class="main-header">Autonomous Research System by Deepali U</div>', unsafe_allow_html=True)
+st.markdown('<div class="main-header">🧠 Autonomous Research System</div>', unsafe_allow_html=True)
 
 st.markdown("""
 <p style='text-align: center; font-size: 1.1rem; color: #666;'>
@@ -44,17 +77,19 @@ with st.sidebar:
     st.header("⚙️ Configuration")
     iterations = st.number_input("Research Iterations", min_value=1, max_value=10, value=1)
     show_logs = st.checkbox("Show Execution Logs", value=False)
+    
+    st.markdown("---")
+    
+    if st.button("🗑️ Clear Previous Results", use_container_width=True):
+        count = cleanup_results()
+        st.success(f"✅ Cleaned {count} files!")
+        time.sleep(1)
+        st.rerun()
 
 # Main content
 col1, col2, col3 = st.columns([1, 2, 1])
 with col2:
     start_button = st.button("🚀 Start Research", use_container_width=True, type="primary")
-
-# Initialize session state
-if 'running' not in st.session_state:
-    st.session_state.running = False
-if 'completed' not in st.session_state:
-    st.session_state.completed = False
 
 # Main execution
 if start_button:
@@ -66,10 +101,18 @@ if st.session_state.running:
     progress_bar = st.progress(0)
     status_text = st.empty()
     
+    # Auto-cleanup before starting
+    status_text.text("🧹 Preparing workspace...")
+    cleanup_results()
+    
     # Log container
     if show_logs:
         log_expander = st.expander("📜 Execution Logs", expanded=False)
         log_placeholder = log_expander.empty()
+    
+    # Initialize log capture BEFORE try block
+    log_stream = io.StringIO()
+    old_stdout = sys.stdout
     
     try:
         # Initialize orchestrator
@@ -78,9 +121,6 @@ if st.session_state.running:
         orchestrator = Orchestrator()
         
         # Capture logs
-        import io, sys
-        log_stream = io.StringIO()
-        old_stdout = sys.stdout
         sys.stdout = log_stream
         
         # Update progress as pipeline runs
@@ -390,7 +430,6 @@ if st.session_state.completed:
         st.markdown("---")
         if st.button("📦 Package All Results as ZIP", use_container_width=True):
             import zipfile
-            import io
             
             zip_buffer = io.BytesIO()
             

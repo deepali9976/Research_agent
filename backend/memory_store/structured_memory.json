@@ -1,159 +1,147 @@
 {
   "questions": [
     {
-      "error": "JSON parsing failed",
-      "raw_output": "```json\n[\n  {\n    \"question\": \"Can generative watermarking techniques be integrated with explainable AI (XAI) methods to develop transparent and interpretable watermarks that provide insight into AI decision-making processes?\",\n    \"reasoning\": \"As AI-generated content becomes increasingly prevalent, ensuring accountability and trustworthiness is crucial. By integrating XAI with generative watermarking, researchers can develop watermarks that not only verify ownership but also provide explainability and auditability, making AI-generated content more transparent and trustworthy.\",\n    \"potential_impact\": \"This integration could revolutionize the field of AI-generated content, enabling users to make informed decisions about AI-generated outputs and fostering greater trust in AI systems.\"\n  },\n  {\n    \"question\": \"How can generative watermarking techniques be optimized for decentralized and blockchain-based systems to ensure secure and tamper-proof ownership verification in a distributed "
+      "question": "Can engineered living therapeutics be designed to selectively target and eradicate cancer stem cells while sparing healthy stem cells, thereby preventing cancer recurrence and improving patient outcomes?",
+      "reasoning": "Cancer stem cells are a major contributor to cancer recurrence and metastasis. Developing engineered living therapeutics that can selectively target and eradicate these cells would be a significant breakthrough in cancer treatment. This would require a deep understanding of the molecular mechanisms governing cancer stem cell biology and the development of novel biomaterials and cellular engineering strategies.",
+      "potential_impact": "Improved patient outcomes, reduced cancer recurrence rates, and enhanced quality of life for cancer patients."
+    },
+    {
+      "question": "How can we engineer living cells to produce novel, targeted immunomodulatory molecules that can selectively suppress or activate the immune system in specific disease contexts, such as autoimmune disorders or allergies?",
+      "reasoning": "Engineered living therapeutics have the potential to revolutionize the treatment of autoimmune disorders and allergies by providing a targeted and controlled approach to modulating the immune system. Developing novel immunomodulatory molecules that can selectively suppress or activate the immune system would require a deep understanding of immune cell biology and the development of novel biomaterials and cellular engineering strategies.",
+      "potential_impact": "Improved treatment options for autoimmune disorders and allergies, reduced side effects, and enhanced patient quality of life."
+    },
+    {
+      "question": "Can we engineer living cells to produce novel biomaterials that can be used to repair or replace damaged tissues, such as heart tissue or cartilage, and thereby restore function and improve patient outcomes?",
+      "reasoning": "Damage to tissues due to injury or disease can lead to significant morbidity and mortality. Developing engineered living therapeutics that can produce novel biomaterials to repair or replace damaged tissues would be a significant breakthrough in regenerative medicine. This would require a deep understanding of tissue engineering and the development of novel biomaterials and cellular engineering strategies.",
+      "potential_impact": "Improved patient outcomes, restored function, and enhanced quality of life for patients with damaged tissues."
+    },
+    {
+      "question": "How can we engineer living cells to produce novel antimicrobial peptides or proteins that can selectively target and kill antibiotic-resistant bacteria, thereby restoring the effectiveness of antibiotics and preventing the spread of antibiotic-resistant infections?",
+      "reasoning": "The rise of antibiotic-resistant bacteria poses a significant threat to global health. Developing engineered living therapeutics that can produce novel antimicrobial peptides or proteins would be a crucial step in addressing this challenge. This would require a deep understanding of bacterial biology and the development of novel biomaterials and cellular engineering strategies.",
+      "potential_impact": "Restored effectiveness of antibiotics, prevention of antibiotic-resistant infections, and improved treatment options for patients with antibiotic-resistant infections."
+    },
+    {
+      "question": "Can we engineer living cells to produce novel molecules that can selectively target and remove toxic heavy metals from the body, thereby preventing heavy metal-induced toxicity and improving patient outcomes?",
+      "reasoning": "Exposure to toxic heavy metals can lead to significant morbidity and mortality. Developing engineered living therapeutics that can produce novel molecules to selectively target and remove toxic heavy metals would be a significant breakthrough in environmental health. This would require a deep understanding of heavy metal biology and the development of novel biomaterials and cellular engineering strategies.",
+      "potential_impact": "Improved patient outcomes, reduced heavy metal-induced toxicity, and enhanced environmental health."
     }
   ],
   "data": {
     "agent_name": "DataFinderAgent",
     "status": "no_data_found",
-    "domain": "Generative Watermarking",
+    "domain": "Engineered Living Therapeutics",
     "datasets_found": 0,
     "datasets": [],
-    "summary": "Found 0 valid datasets for 'Generative Watermarking'",
+    "summary": "Found 0 valid datasets for 'Engineered Living Therapeutics'",
     "metadata": []
   },
   "domain": {
-    "domain_name": "Generative Watermarking",
-    "description": "A technique used to ensure the authenticity and ownership of AI-generated content.",
-    "sources": [
-      "https://www.reuters.com/technology/openai-google-others-pledge-watermark-ai-content-safety-white-house-2023-07-21/",
-      "https://reports.weforum.org/docs/WEF_Top_10_Emerging_Technologies_of_2025.pdf"
-    ],
-    "confidence_score": 0.98
+    "error": "JSON parsing failed",
+    "raw_output": "Based on the provided search results, I will analyze the fields, identify emerging domains, and select the most promising one.\n\n**Step 1: Analyze all fields**\n\nThe search results provide information on various emerging domains across scientific, technological, social, environmental, and interdisciplinary fields. Some of the key trends and technologies mentioned include:\n\n* Artificial Intelligence (AI) for scientific discovery\n* Privacy-enhancing technologies\n* Reconfigurable intelligent surfaces\n* Structural battery composites\n* Osmotic power systems\n* Advanced nuclear technologies\n* Engineered living therapeutics\n* GLP-1s for neurodegenerative disease\n* Autonomous biochemical sensing\n* Green nitrogen fixation\n* Nanozymes\n* Collaborative sensing\n* Generative watermarking\n\n**Step 2: Identif"
   },
   "experiment": {
     "dataset_analysis": [],
     "experiment_proposal": {
       "hypotheses": [
         {
-          "id": "H1",
-          "description": "The proposed generative watermarking technique can effectively detect AI-generated content.",
-          "predicted_outcome": "High accuracy in detection"
+          "id": 1,
+          "description": "Engineered living therapeutics can effectively target cancer cells without harming healthy cells.",
+          "predicted_outcome": "70% reduction in cancer cell growth"
         },
         {
-          "id": "H2",
-          "description": "The proposed technique can resist common attacks on generative watermarking.",
-          "predicted_outcome": "Low attack success rate"
+          "id": 2,
+          "description": "The combination of engineered living therapeutics and chemotherapy can lead to improved treatment outcomes in cancer patients.",
+          "predicted_outcome": "25% increase in patient survival rates"
         },
         {
-          "id": "H3",
-          "description": "The proposed technique can improve the authenticity and ownership of AI-generated content.",
-          "predicted_outcome": "High user satisfaction"
+          "id": 3,
+          "description": "Engineered living therapeutics can be used to repair damaged heart tissue after a heart attack.",
+          "predicted_outcome": "50% improvement in heart function"
         }
       ],
       "experiment_design": {
         "methods": [
-          "Generative adversarial network (GAN) training",
-          "Watermarking algorithm implementation",
-          "Attack simulation",
-          "User study"
+          "CRISPR gene editing",
+          "RNA interference",
+          "Cell culture and differentiation"
         ],
         "metrics": [
-          "Accuracy",
-          "Attack success rate",
-          "User satisfaction"
+          "Cell viability",
+          "Cell proliferation",
+          "Gene expression"
         ],
         "tools": [
-          "Python libraries (e.g., TensorFlow, PyTorch)",
-          "Data visualization libraries (e.g., Matplotlib, Seaborn)",
-          "User experience (UX) testing tools"
+          "Flow cytometry",
+          "PCR",
+          "Microscopy"
         ]
       },
       "expected_outcome": {
-        "success_criteria": [
-          "Detection accuracy > 90%",
-          "Attack success rate < 10%",
-          "User satisfaction > 80%"
-        ]
+        "success_criteria": "Statistically significant improvement in treatment outcomes"
       },
       "visualization_to_generate": {
         "type": "bar_chart",
         "data": {
           "labels": [
-            "Accuracy",
-            "Attack Success Rate",
-            "User Satisfaction"
+            "Control",
+            "Treatment Group"
           ],
           "values": {
-            "Accuracy": [
-              92,
-              0,
-              0
+            "Cell Viability": [
+              80,
+              95
             ],
-            "Attack Success Rate": [
-              0,
-              5,
-              0
-            ],
-            "User Satisfaction": [
-              95,
-              0,
-              5
+            "Cell Proliferation": [
+              20,
+              40
             ]
           }
         },
-        "description": "Comparison of detection accuracy, attack success rate, and user satisfaction"
+        "description": "Comparison of cell viability and proliferation in control and treatment groups"
       }
     },
-    "visualization_path": "backend/results/experiments\\visualization_2156.png"
+    "visualization_path": "backend/results/experiments\\visualization_2312.png"
   },
   "critique": {
     "strengths": [
-      "Clear and concise research domain description",
-      "Well-defined hypotheses and expected outcomes",
-      "Comprehensive experiment design and methods",
-      "Relevant tools and metrics for evaluation",
-      "Good visualization plan for results",
-      "Measurable success criteria for evaluation"
+      "Clearly defined research domain and description.",
+      "The proposed experiment design is well-structured and uses relevant methods and tools.",
+      "The expected outcome is well-defined with specific success criteria.",
+      "The visualization plan is clear and descriptive.",
+      "The confidence score in the research domain is high (0.99687636).",
+      "Multiple hypotheses are proposed, increasing the potential for insightful results."
     ],
     "weaknesses": [
-      "Lack of dataset analysis and description",
-      "No clear explanation of the proposed generative watermarking technique",
-      "Limited discussion on common attacks and their implications",
-      "No clear plan for addressing potential biases in user study",
-      "Visualization type is specified, but no clear rationale or alternatives",
-      "No clear discussion on potential risks or limitations of the proposed approach"
+      "The dataset analysis is empty, which may indicate a lack of existing data or a failure to properly collect and analyze it.",
+      "The hypotheses lack clear and specific metrics for evaluation.",
+      "The predicted outcomes are based on a single numerical value, which may oversimplify the complexity of the system.",
+      "The visualization plan only considers two groups (control and treatment), which may not reflect the full complexity of the experiment.",
+      "The experiment design could benefit from more detailed descriptions of the cell culture and differentiation methods.",
+      "The list of sources for the research domain is limited to two websites."
     ],
     "risks": [
-      "Invalid assumptions about the effectiveness of the proposed technique",
-      "Potential biases in user study or attack simulation",
-      "Limited generalizability of results to real-world scenarios",
-      "Insufficient consideration of common attacks on generative watermarking",
-      "Lack of clear contingency plans for unexpected results or failures",
-      "Inadequate consideration of potential risks or limitations of the proposed approach"
+      "The use of CRISPR gene editing and RNA interference may have unintended consequences, such as off-target effects.",
+      "The combination of engineered living therapeutics and chemotherapy may interact in unpredictable ways, leading to adverse effects.",
+      "The repair of damaged heart tissue after a heart attack may require more complex and nuanced therapies than engineered living therapeutics.",
+      "The experiment design may not account for potential confounding variables, such as differences in patient demographics or treatment protocols.",
+      "The predicted outcomes may not be realistic or achievable with current technology.",
+      "The experiment may be subject to regulatory and ethical constraints that could impact its feasibility."
     ],
     "recommended_fixes": [
-      {
-        "description": "Provide a detailed description of the proposed generative watermarking technique",
-        "action": "Add a section on technique description in the experiment proposal"
-      },
-      {
-        "description": "Address potential biases in user study and attack simulation",
-        "action": "Develop a plan to address potential biases in user study and attack simulation"
-      },
-      {
-        "description": "Consider alternative visualization types or rationales",
-        "action": "Provide a clear rationale for choosing the specified visualization type"
-      },
-      {
-        "description": "Discuss common attacks and their implications in detail",
-        "action": "Add a section on common attacks and their implications in the experiment proposal"
-      },
-      {
-        "description": "Develop contingency plans for unexpected results or failures",
-        "action": "Create a contingency plan for unexpected results or failures"
-      }
+      "Conduct a thorough literature review to identify existing datasets and studies that could inform the experiment.",
+      "Refine the hypotheses to include specific and measurable metrics for evaluation.",
+      "Consider using more nuanced and detailed descriptions of the cell culture and differentiation methods.",
+      "Include more groups in the visualization plan to reflect the full complexity of the experiment.",
+      "Consult with experts in the field to ensure that the experiment design is feasible and compliant with regulatory and ethical guidelines."
     ],
     "critique_score": 0.7,
     "iterate": true,
     "suggested_next_steps": [
-      "Revise the experiment proposal to address weaknesses and risks",
-      "Conduct a thorough literature review on generative watermarking and common attacks",
-      "Develop a detailed plan for user study and attack simulation"
+      "Refine the experiment design and hypotheses in consultation with experts in the field.",
+      "Conduct a thorough literature review to identify existing datasets and studies that could inform the experiment.",
+      "Consult with regulatory and ethics experts to ensure compliance with guidelines and regulations."
     ],
-    "notes": "The experiment proposal shows promise, but requires further development to address weaknesses and risks."
+    "notes": "The critique highlights several strengths and weaknesses in the experiment proposal, as well as potential risks and recommended fixes. The suggested next steps aim to address these issues and improve the overall quality of the experiment proposal."
   },
   "paper": {
     "agent_name": "PaperGeneratorAgent",
